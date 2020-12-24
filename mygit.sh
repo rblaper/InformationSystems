@@ -40,7 +40,7 @@ fi
 
 git checkout -b $2
 
-git rm --cached -rf *
+git rm -rf *
 
 mkdir $2
 
@@ -50,7 +50,7 @@ touch testfile.txt
 
 git add *
  
-git commit -m New  branch  called $2
+git commit -m "New  branch  called $2"
 
 Host github.com HostName github.com User rblaper IdentityFile ~/.ssh/id_ed25519.pub
 
