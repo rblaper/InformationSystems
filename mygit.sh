@@ -45,18 +45,17 @@ if [ $? -gt 0 ]; then
    exit 4
 fi
 
-# Then, continue with the following requirements
-# Create branch (-b ) $2 based in this case on main and switch to the new
+# Checking if the branc already exits
+# If true will exit (necessary because if the script is run again will delete
+# all main content and creates the folder named $2
+# If not exists, will creates the ne nuew branch named $2 based on main
+if [ `git branch --list $2` ]; then
+   echo Branch name $2 already exists.
+   exit 5
+else 
+	git checkout -b $2
 
-if [ `git branch --list $2` ]
-then
-   echo "Branch name $2 already exists."
-   exit 4
 fi
-
-
-git checkout -b $2
-
 
 #Removing tracked files from the branch (Git index). Additionally, can be used 
 #to remove files from both the staging index and the working directory.
