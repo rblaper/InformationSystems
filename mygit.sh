@@ -5,6 +5,11 @@ if [ $# -lt 2 ]; then
 fi
 
 # Run a command on the left to check that the folder .git exists
+# --is-inside-git-dir
+
+#working tree, meaning the location where the repository has been checked out 
+#working directory where git status command is run
+ 
  git rev-parse --is-inside-work-tree &> /dev/null
 
 # DON'T TOUCH THE IF SENTENCE. Validating that we are in a git folder
@@ -28,6 +33,7 @@ main=$1
 new_branch=$2
 
 # Run a command on the left to check out your main/master branch
+# Switch to main branch
 git checkout main &> /dev/null
 
 # DON'T TOUCH THE IF SENTENCE. Validating the main or master exists
@@ -37,21 +43,41 @@ if [ $? -gt 0 ]; then
 fi
 
 # Then, continue with the following requirements
-
+# Create branch (-b ) $2 based in this case on main and switch to the new
 git checkout -b $2
+
+#Removing tracked files from the branch (Git index). Additionally, can be used 
+#to remove files from both the staging index and the working directory.
+#removing files copied from main
 
 git rm -rf *
 
-mkdir $2
+#Variable to create the folder and file
+FILE=./$2/testfile.text
 
-cd $2
+#Create de foleder and file
+mkdir -p "$(dirname "$FILE")" && touch "$FILE"
 
-touch testfile.txt
+#mkdir $2
+#cd $2
+#touch $2/testfile.txt
 
+#Adding a change in the working directory to the staging area.
+#It can also speciefied hich update to include update in the next commit
+# * all changes
 git add *
+
+#Saving changes to the local repository
+#-m "message "
  
 git commit -m "New  branch  called $2"
 
-Host github.com HostName github.com User rblaper IdentityFile ~/.ssh/id_ed25519.pub
+#Host github.com 
+#HostName github.com 
+#User rblaper 
+#IdentityFile ~/.ssh/id_ed25519.pub
 
+#Pushing changes, origin is usually used only where there are multiple remote 
+#repository and it is needed to specify which remote repository should be used 
+#for the push
 git push origin $2
