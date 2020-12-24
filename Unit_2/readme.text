@@ -1,9 +1,0 @@
-Exercise to practise
-
-Create a new repository using the local Git and complete the following parts:
-
-    Create the corresponding repository on GitHub and add the remote to the local one.
-    Create two branches Unit-1 and Unit-2 from the empty master/main branch.
-    Upload a different file for each branch. Then, push the changes to GitHub. 
-    Checkout Unit-1 and update the same line of one file both from the local and remote repository. Solve the conflicts.
-    Merge the branches Unit-1 and Unit-2 to master/main.
